@@ -16,5 +16,5 @@
 - **Semantic HTML**: Utilizes HTML5 elements like `<header>`, `<footer>`, `<section>`, for improved readability and structure
 - **Audio and Video Support**: Integrates video support by embedding YouTube videos using the `<iframe>` element
 - **Forms and Input Validation**: Implements forms for user input and validating it
-- **Canvas Element**: Utilizes the `<canvas>` element for visual representations of user progress and statistics **(to be implemented)**
-- **Responsive Design**: Ensures the platform is mobile-friendly using media queries and flexible layouts **(to be implemented)**
+- **Canvas Element (to be implemented)**: Utilizes the `<canvas>` element for visual representations of user progress and statistics 
+- **Responsive Design (to be implemented)**: Ensures the platform is mobile-friendly using media queries and flexible layouts
