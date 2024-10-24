@@ -1,0 +1,328 @@
+body {
+    font-family: "Inter", Arial;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+.playwrite-gb-s {
+    font-family: "Playwrite GB S", cursive;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: bolder;
+}
+
+.inter {
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6267f6;
+    cursor: pointer;
+}
+
+nav .logo:hover {
+    color: #f6cc43;
+    transition-duration: 0.25s;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 45px;
+}
+
+nav ul li a {
+    padding: 15px;
+    color: rgb(36, 36, 36);
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+nav ul li a:hover {
+    background-color: #6267f6;
+    color: white;
+    transition-duration: 0.25s;
+}
+
+.landing {
+    text-align: center;
+    margin: auto;
+}
+
+.landing button {
+    margin: 25px;
+    width: 100px;
+}
+
+.landingContent img {
+    margin-bottom: 100px;
+}
+
+.video-desc {
+    padding: 100px;
+    background-color: #6267f6;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mental-math-explanation {
+    padding: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mental-math-def {
+    font-size: 23px;
+    margin-left: 30px;
+    margin-right: 70px;
+    text-align: left;
+}
+
+.mental-math-def h1 {
+    font-weight: bold;
+    font-size: 45px;
+    margin-bottom: 15px;
+    font-family: "Playwrite GB S";
+    margin-top: 35px;
+}
+
+.mental-math-def p {
+    font-size: 20px;
+    margin-top: 35px;
+}
+
+
+.desc-container {
+    font-size: 23px;
+    margin-left: 150px;
+    text-align: left;
+    color: white;
+}
+
+.desc-container h1 {
+    font-family: "Playwrite GB S";
+}
+
+.textContainer h1 {
+    font-weight: bold;
+    font-size: 45px;
+    margin-bottom: 5px;
+    font-family: "Playwrite GB S";
+    margin-top: 15px;
+}
+
+.textContainer p {
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.textContainer {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.about {
+    display: none;
+    justify-content: center;
+}
+
+.tier-container {
+    justify-content: center;
+    margin: 25px;
+}
+
+.tier-container > div {
+    padding: 50px;
+    margin: 5px;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+}
+
+.tier-content {
+    display: flex;
+    align-items: center;
+}
+
+.tier-range {
+    margin-right: 35px; 
+    font-size: 25px; 
+    color: #6267f6;
+}
+
+.tier-name {
+    font-size: 25px; 
+    font-weight: bold;
+    font-family: "Playwrite GB S";
+}
+
+.tier-desc {
+    margin-left: 50px;
+    font-size: 17px; 
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+    overflow: auto; 
+    z-index: 1000; 
+}
+
+.modal-content {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: #ffffff; 
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 50px; 
+    border-radius: 15px; 
+    width: 300px;
+    text-align: center; 
+}
+
+.modal-content .closeTakeTest {
+    margin-bottom: 50px;
+    top: 10px;
+}
+
+.modal-content input {
+    width: 90%;
+    padding: 8px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.modal-content h2 {
+    font-size: 35px;
+}
+
+.close {
+    color: #1a1a1a;
+    cursor: pointer;
+}
+
+button {
+    padding: 10px 35px;
+    background-color: #6267f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 20px;
+    font-family: "Inter";
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #f6cc43;
+    color: #000;
+}
+
+.close {
+    color: white;
+    font-size: 24px;
+    float: right;
+    cursor: pointer;
+}
+
+.landing, .takeTestSection {
+    transition: all 1s ease;
+}
+
+.takeTestSection {
+    display: none; 
+    text-align: center;
+    margin-top: 10px;
+}
+
+.scoreBox {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #6267f6;
+    width: 150px;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.timer {
+    font-size: 55px;
+    margin: 5px;
+    padding: 10px;
+    color: #6267f6;
+    font-weight: bold;
+}
+
+.qna {
+    font-size: 100px;
+    margin: 50px 0;
+}
+
+.answer {
+    font-size: 100px;
+    width: 125px;
+    text-align: center;
+}
+
+#testSummaryText {
+    font-size: 20px;
+}
+
+.btnContainer {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.btnContainer button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #f6cc43;
+    color:#1a1a1a;
+    padding: 3px; 
+    text-align: center; 
+}
