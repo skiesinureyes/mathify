@@ -7,10 +7,10 @@
 - Foster a fun and competitive atmosphere through tier-based assessments
 
 ## Features
-- **Take Test**: Improve mental math abilities by completing various mental math exercises
+- **Take Test**: Users can improve their mental math abilities by taking unlimited tests and exercises
 - **My Progress**: Users can track their progress over time
 - **About**: Users can learn more about their current mental math level
-- **Personalized Recommendations (to be implemented)**: Personalized recommendations on how users can enhance their mental math skills
+- **Personalized Recommendations (to be implemented)**: Users will get ersonalized recommendations on how they can enhance their mental math skills
 
 ## HTML5 Features Implemented
 - **Semantic HTML**: Utilizes HTML5 elements like `<header>`, `<footer>`, `<section>`, for improved readability and structure
