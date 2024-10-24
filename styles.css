@@ -13,6 +13,8 @@ body {
 html, body {
     height: 100%;
     margin: 0;
+    overflow-x: hidden;
+    padding: 0;
 }
 
 main {
@@ -93,7 +95,7 @@ nav ul li a:hover {
     padding: 100px;
     background-color: #6267f6;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .mental-math-explanation {
@@ -114,7 +116,6 @@ nav ul li a:hover {
     font-size: 45px;
     margin-bottom: 15px;
     font-family: "Playwrite GB S";
-    margin-top: 35px;
 }
 
 .mental-math-def p {
@@ -122,12 +123,11 @@ nav ul li a:hover {
     margin-top: 35px;
 }
 
-
 .desc-container {
     font-size: 23px;
-    margin-left: 150px;
     text-align: left;
     color: white;
+    margin-left: 125px;
 }
 
 .desc-container h1 {
@@ -139,7 +139,7 @@ nav ul li a:hover {
     font-size: 45px;
     margin-bottom: 5px;
     font-family: "Playwrite GB S";
-    margin-top: 15px;
+    margin-top: 35px;
 }
 
 .textContainer p {
@@ -159,11 +159,12 @@ nav ul li a:hover {
 
 .tier-container {
     justify-content: center;
-    margin: 25px;
+    margin: 50px;
+    gap: 35px;
 }
 
 .tier-container > div {
-    padding: 50px;
+    padding: 30px;
     margin: 5px;
     background-color: #ffffff;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
@@ -294,13 +295,13 @@ button:hover {
 }
 
 .qna {
-    font-size: 100px;
-    margin: 50px 0;
+    font-size: 90px;
+    margin-top: 10px;
 }
 
 .answer {
-    font-size: 100px;
-    width: 125px;
+    font-size: 90px;
+    width: 200px;
     text-align: center;
 }
 
@@ -309,8 +310,8 @@ button:hover {
 }
 
 .btnContainer {
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 .btnContainer button {

@@ -42,12 +42,52 @@ let questionsAnswered = 0;
 let totalTime = 60;
 let summaryShown = false;
 
+// function generateQuestion() {
+//     const num1 = Math.floor(Math.random() * 10);
+//     const num2 = Math.floor(Math.random() * 10);
+//     const operator = Math.random() < 0.5 ? '+' : '-';
+//     const question = `${num1} ${operator} ${num2} = `;
+//     const answer = operator === '+' ? num1 + num2 : num1 - num2; 
+//     return { question, answer };
+// }
+
 function generateQuestion() {
-    const num1 = Math.floor(Math.random() * 10);
-    const num2 = Math.floor(Math.random() * 10);
-    const operator = Math.random() < 0.5 ? '+' : '-';
-    const question = `${num1} ${operator} ${num2} = `;
-    const answer = operator === '+' ? num1 + num2 : num1 - num2; 
+    // Generate two random numbers for addition and subtraction, ranging from 1 to 100
+    const num1 = Math.floor(Math.random() * 100) + 1; // Range: 1 to 100
+    const num2 = Math.floor(Math.random() * 100) + 1; // Range: 1 to 100
+
+    // Generate two random numbers for multiplication, limited to one digit (1-9)
+    const mulNum1 = Math.floor(Math.random() * 9) + 1; // Range: 1 to 9
+    const mulNum2 = Math.floor(Math.random() * 9) + 1; // Range: 1 to 9
+
+    // Randomly select an operator, including +, -, *, and /
+    const operators = ['+', '-', '*', '/'];
+    const operator = operators[Math.floor(Math.random() * operators.length)];
+
+    let question, answer;
+
+    if (operator === '/') {
+        // Ensure num1 is a multiple of the divisor to avoid fractions
+        const divisor = Math.floor(Math.random() * 9) + 1; // Range: 1 to 9
+        const dividend = divisor * (Math.floor(Math.random() * 10) + 1); // Generate a multiple of divisor
+        question = `${dividend} / ${divisor} = `;
+        answer = dividend / divisor; // Division will yield an integer
+    } else if (operator === '*') {
+        question = `${mulNum1} * ${mulNum2} = `;
+        answer = mulNum1 * mulNum2; // Multiplication
+    } else {
+        // For + and - ensure no negatives
+        if (operator === '+') {
+            question = `${num1} + ${num2} = `;
+            answer = num1 + num2; // Addition
+        } else { // operator === '-'
+            // Ensure num1 >= num2 for subtraction
+            const validNum2 = Math.floor(Math.random() * num1) + 1; // Range: 1 to num1
+            question = `${num1} - ${validNum2} = `;
+            answer = num1 - validNum2; // Subtraction
+        }
+    }
+
     return { question, answer };
 }
 
@@ -108,8 +148,7 @@ function getTier(speed) {
 function resetGame() {
     rightScore = 0;
     wrongScore = 0;
-    timeLeft = 10;
-    summaryShown = false;
+    timeLeft = 60;
     document.getElementById('rightScore').textContent = rightScore;
     document.getElementById('wrongScore').textContent = wrongScore;
     document.getElementById('timer').textContent = timeLeft;
