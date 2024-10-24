@@ -190,6 +190,7 @@ document.getElementById('answer').addEventListener('keydown', function (event) {
 document.getElementById('startTestBtn').addEventListener('click', function() {
     resetGame();
     startTimer(); 
+    document.querySelector(".about").style.display = 'none';
 });
 
 // Home button functionality
