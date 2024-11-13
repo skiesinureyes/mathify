@@ -6,28 +6,33 @@ const authRoutes = require('./backend/routes/auth');
 const mongoose = require('mongoose');
 const userRoutes = require('./backend/routes/userRoutes'); // Import user routes
 const authMiddleware = require('./backend/middleware/authMiddleware');
-const userActivityRoutes = require('./routes/userActivityRoutes');
+const userActivityRoutes = require('./backend/routes/userActivityRoutes');
 
-
-const router = express.Router();
+const cors = require('cors');
 const app = express();
-connectDB();
 
+// Middleware
 app.use(express.json());
+app.use(cors({
+  origin: 'http://127.0.0.1:5500'
+}));
+
+
+// Routes
 app.use('/api/auth', authRoutes); 
 app.use('/api/auth', userRoutes);
-app.use('/api', userActivityRoutes);
+app.use('/api/user-activity', userActivityRoutes);
 
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error(err));
 
-router.get('/protected', authMiddleware, (req, res) => {
+// Protected route
+app.get('/api/protected', authMiddleware, (req, res) => {
   res.json({ message: 'This is a protected route', user: req.user });
 });
 
-module.exports = router;
-
+// Run the server
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

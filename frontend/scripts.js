@@ -1,3 +1,93 @@
+async function registerUser() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const responseDiv = document.getElementById('register-response');
+
+    // Reset responseDiv
+    responseDiv.textContent = '';
+
+    if (!name || !email || !password) {
+        console.log("All fields are required.");
+        alert("Please fill all fields");
+        return;
+    }
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password }) // Pastikan struktur ini benar
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.log("Error message from server:", errorData.message);
+        responseDiv.textContent = `Error: ${errorData.message}`;
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log(data);
+
+      const responseDiv = document.getElementById('register-response');
+      responseDiv.textContent = data.message;
+
+    } 
+    
+    catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  async function loginUser() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    if (!email || !password) {
+        console.log("All fields are required.");
+        alert("Please fill all fields");
+        return;
+    }
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        // Menyimpan token JWT jika login berhasil
+        if (data.token) {
+            localStorage.setItem('token', data.token);
+            document.getElementById('login-response').textContent = "Login successful!";
+        } else {
+            document.getElementById('login-response').textContent = data.message;
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('login-response').textContent = "Login failed!";
+    }
+}
+
+// Tambahkan event listener ke tombol login
+document.getElementById('login-btn').addEventListener('click', loginUser);
+  
+  // Tambahkan event listener ke tombol register
+document.getElementById('register-btn').addEventListener('click', registerUser);
+
 // Show take test popup
 takeTestBtn.onclick = () => {
     takeTestModal.style.display = 'flex';
