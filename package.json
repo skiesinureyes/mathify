@@ -1,0 +1,20 @@
+{
+  "name": "mathify",
+  "version": "1.0.0",
+  "description": "**Mathify** is an innovative platform designed to enhance mental math skills through engaging and interactive exercises. It provides users with a variety of math challenges that not only test their abilities but also help them develop speed and accuracy in solving math problems with a wide range of question types—including addition, subtraction, multiplication, and division.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1"
+  }
+}

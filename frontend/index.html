@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathify - Mental Math</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="logo playwrite-gb-s" id="logo-container">Mathify</div>
+        <ul>
+            <li><a href="#taketest" id="takeTestBtn">Take Test</a></li>
+            <li><a href="#myprogress" id="myProgressBtn">My Progress</a></li>
+            <li><a href="#about" id="aboutBtn">About</a></li>
+            <li><a href="#signin" id="signInBtn">Sign In</a></li>
+        </ul>
+    </nav>
+
+    <section id="landingSection" class="landing">
+
+        <div class="landingContent">
+            <div class="textContainer">
+                <h1>Welcome to Mathify!</h1>
+                <p>A fun platform to challenge and test your mental math skills, <br> track your speed and accuracy, and level up through engaging math challenges!</p>
+            </div>
+            <img src="assets/Landing Cover.png" alt="Landing Cover Image" width="950" height="575"><br>
+        </div>
+    
+        <div class="video-desc">
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/CP2i5btnUpY?autoplay=1si=hrRkJoa9xWC8c3Ez" title="YouTube video player" frameborder="0" allow="autoplay;" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+
+            <div class="desc-container">
+                <h1>"The only way to learn mathematics is to do mathematics."</h1>
+                <p>— Paul Halmos</p>
+            </div>
+        </div>
+
+        <div class="mental-math-explanation">
+
+            <div class="mental-math-def">
+                <h1> What is Mental Math? </h1>
+                <p> Mental math refers to the ability to perform arithmetic calculations in your head without the aid of calculators, paper, or other tools. It involves using strategies and techniques to solve problems quickly and accurately, relying on your knowledge of numbers and mathematical concepts. <br> <br> Mental math improves calculation speed, sharpens memory and concentration, enhances number sense, boosts problem-solving skills, and builds confidence in handling math tasks quickly and independently.</p>
+            </div>
+
+            <div class="mental-math-img">
+                <img src="assets/Mental Math.png" alt="Mental Math" width="450" height="450"><br>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="about">
+        <div class="textContainer">
+            <h1>Tier Description</h1>
+            <p>Ever wondered what does the test summary mean?</p>
+        </div>
+
+        <div class="tier-container">
+            
+            <div class="tier-content">
+                <h1 class="tier-range">0-15 QPM</h1>
+                <h1 class="tier-name">Snail Slowpoke 🐌</h1>
+                <p class="tier-desc">Taking it slow, but every answer counts! This tier embraces a thoughtful approach to math. While the pace may be leisurely, each answer is carefully considered, reflecting a deep understanding of the concepts. Snail Slowpokes may enjoy taking their time to ensure accuracy over speed, reminding everyone that it’s not a race! </p>
+            </div>
+
+            <div class="tier-content">
+                <h1 class="tier-range">16-30 QPM</h1>
+                <h1 class="tier-name">Bouncy Bunny 🐰</h1>
+                <p class="tier-desc">Hopping through questions with a cheerful spirit! Bouncy Bunnies bring joy to the math journey. With a playful approach, they bounce from question to question, enjoying the learning process. This tier showcases a blend of enthusiasm and increasing speed, making them a delightful presence in any math challenge! </p>
+            </div>
+
+            <div class="tier-content">
+                <h1 class="tier-range">31-45 QPM</h1>
+                <h1 class="tier-name">Speedy Turtle 🐢💨</h1>
+                <p class="tier-desc">Steadily quick, making good progress! The Speedy Turtle is all about finding a balanced pace. They’ve figured out the rhythm of problem-solving and can efficiently navigate through questions without sacrificing accuracy. This tier shows that steady effort often leads to solid results, proving that perseverance pays off! </p>
+            </div>
+
+            <div class="tier-content">
+                <h1 class="tier-range">46-60 QPM</h1>
+                <h1 class="tier-name">Zippy Zebra 🦓⚡</h1>
+                <p class="tier-desc"> Racing through problems with stripes of accuracy! Zippy Zebras are the stars of efficiency. They combine speed with precision, effortlessly gliding through challenges. Their unique stripes symbolize their ability to balance rapid responses with attention to detail, making them reliable problem-solvers in any math adventure! </p>
+            </div>
+
+            <div class="tier-content">
+                <h1 class="tier-range">61-75 QPM</h1>
+                <h1 class="tier-name">Flashy Fox 🦊🌟</h1>
+                <p class="tier-desc"> Clever and swift, always one step ahead! Flashy Foxes exhibit sharp wit and agility in their math skills. With their quick thinking and resourcefulness, they tackle problems with ease. This tier celebrates a keen mind that not only values speed but also strategies, making them formidable competitors! </p>
+            </div>
+
+            <div class="tier-content">
+                <h1 class="tier-range">76-100 QPM</h1>
+                <h1 class="tier-name">Lightning Lemur ⚡🐒</h1>
+                <p class="tier-desc"> Fast and fierce, zooming through with precision! The Lightning Lemur is the ultimate math master. With unparalleled speed and sharp accuracy, they tackle the toughest questions with confidence. This tier represents the pinnacle of performance, showcasing how combining rapid response with precision can lead to exceptional results! </p>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="takeTestModal" class="modal">
+        <div class="modal-content">
+            <div class="close" id="closeTakeTest" style="color: black;">&times;</div>
+            <h2>Are you ready to start the test?</h2>
+            <button id="startTestBtn">Start</button>
+        </div>
+    </div>
+
+    <section class="takeTestSection">
+
+        <div>
+            <div class="scoreBox" id="rightAnswerBox">
+                Right Answer = <span id="rightScore">0</span>
+            </div>
+            <div class="scoreBox" id="wrongAnswerBox">
+                Wrong Answer = <span id="wrongScore">0</span>
+            </div>
+        </div>
+
+        <div class="timer">
+            <span id="timer"></span>
+        </div>
+
+        <div class="qna">
+            <span id="question"></span>
+            <input type="text" id="answer" class="answer">
+        </div>
+
+        <div class="btnContainer">
+            <button id="leaveBtn">Leave</button>
+            <button id="restartBtn">Restart</button>
+        </div>
+
+    </section>
+
+    <div id="testSummaryModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeTestSummary" style="color: black;">&times;</span>
+            <h2>Test Summary</h2>
+            <div id="testSummaryText"></div>
+            <div class="btnSummary">
+                <button id="homeBtn">Home</button>
+                <button id="startAgainBtn">Start Again</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Made with ❤️ by Syakira Fildza Nazhifan. All rights reserved. &copy; 2024 </p>
+        </div>
+    </footer>    
+
+    <script src="scripts.js"></script>
+</body>
+</html>
