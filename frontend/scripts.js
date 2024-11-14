@@ -1,3 +1,4 @@
+// Sign up function
 async function registerUser() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -42,9 +43,11 @@ async function registerUser() {
     }
   }
 
+// Log in function
   async function loginUser() {
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
+    const responseDiv = document.getElementById('login-response');
 
     if (!email || !password) {
         console.log("All fields are required.");
@@ -71,22 +74,103 @@ async function registerUser() {
         // Menyimpan token JWT jika login berhasil
         if (data.token) {
             localStorage.setItem('token', data.token);
-            document.getElementById('login-response').textContent = "Login successful!";
+            responseDiv.textContent = "Login successful!";
         } else {
-            document.getElementById('login-response').textContent = data.message;
+            responseDiv.textContent = data.message;
         }
 
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('login-response').textContent = "Login failed!";
+        responseDiv.textContent = "Login failed!";
     }
 }
 
-// Tambahkan event listener ke tombol login
+// Event listener log in & sign up
 document.getElementById('login-btn').addEventListener('click', loginUser);
-  
-  // Tambahkan event listener ke tombol register
 document.getElementById('register-btn').addEventListener('click', registerUser);
+
+// Save test result
+async function saveTestResult(speed, accuracy, rightAnswers, wrongAnswers) {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/user-activity/saveTestResult', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}` // Assumes token is stored in localStorage
+            },
+            body: JSON.stringify({ speed, accuracy, rightAnswers, wrongAnswers })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data.message);
+    } catch (error) {
+        console.error('Error saving test result:', error);
+    }
+}
+
+// Load test result
+async function loadQuizResults() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/user-activity/getTestResults', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const results = await response.json();
+        displayResultsChart(results); // Pass results to chart display function
+    } 
+    
+    catch (error) {
+        console.error('Error loading quiz results:', error);
+    }
+}
+
+// Display chart
+function displayResultsChart(results) {
+    const ctx = document.getElementById('resultsChart').getContext('2d');
+    const labels = results.map(result => new Date(result.date).toLocaleDateString());
+    const speeds = results.map(result => result.speed);
+    const accuracies = results.map(result => result.accuracy);
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                { label: 'Speed (QPM)', data: speeds, borderColor: 'blue', fill: false },
+                { label: 'Accuracy (%)', data: accuracies, borderColor: 'green', fill: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+}
+
+// Toggle to "My Progress" view
+document.getElementById('progress-btn').addEventListener('click', function() {
+    document.getElementById("landingSection").style.display = 'none';
+    document.getElementById('progress-section').style.display = 'block';
+    loadQuizResults();
+});
+
+// Back to the quiz or home view
+document.getElementById('back-to-quiz').addEventListener('click', function() {
+    document.getElementById('progress-section').style.display = 'none';
+    document.getElementById("landingSection").style.display = 'block';
+});
+
 
 // Show take test popup
 takeTestBtn.onclick = () => {
@@ -126,20 +210,11 @@ document.getElementById("logo-container").addEventListener("click", function() {
 let rightScore = 0;
 let wrongScore = 0;
 let timer;
-let timeLeft = 60;
+let timeLeft = 10;
 let currentAnswer;
 let questionsAnswered = 0;
-let totalTime = 60;
+let totalTime = 10;
 let summaryShown = false;
-
-// function generateQuestion() {
-//     const num1 = Math.floor(Math.random() * 10);
-//     const num2 = Math.floor(Math.random() * 10);
-//     const operator = Math.random() < 0.5 ? '+' : '-';
-//     const question = `${num1} ${operator} ${num2} = `;
-//     const answer = operator === '+' ? num1 + num2 : num1 - num2; 
-//     return { question, answer };
-// }
 
 function generateQuestion() {
     // Generate two random numbers for addition and subtraction, ranging from 1 to 100
@@ -181,6 +256,7 @@ function generateQuestion() {
     return { question, answer };
 }
 
+// Start timer
 function startTimer() {
     clearInterval(timer);
     timer = setInterval(() => {
@@ -200,6 +276,9 @@ function showSummary() {
     const speed = calculateSpeed();
     const tier = getTier(speed);
 
+    // Save test result
+    // saveTestResult(speed, accuracy, rightScore, wrongScore);
+
     const summaryText = `
         You are a ${tier}<br><br>
         Average Speed: ${speed} QPM <br>
@@ -208,8 +287,19 @@ function showSummary() {
         Wrong Answers: ${wrongScore}<br><br>
     `;
     
-    document.getElementById('testSummaryText').innerHTML = summaryText;
-    document.getElementById('testSummaryModal').style.display = 'block'; 
+    // Event listener
+    document.getElementById('testSummaryText').innerHTML = `
+        Average Speed: ${speed} QPM <br>
+        Accuracy: ${accuracy}%<br>
+        Right Answers: ${rightScore}<br>
+        Wrong Answers: ${wrongScore}<br>
+    `;
+    document.getElementById('testSummaryModal').style.display = 'block';
+
+    // Automatically save test results if user is logged in
+    if (localStorage.getItem('token')) {
+        saveTestResult(speed, accuracy, rightScore, wrongScore);
+    }
 }
 
 function calculateSpeed() {

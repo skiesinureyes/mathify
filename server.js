@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const userRoutes = require('./backend/routes/userRoutes'); // Import user routes
 const authMiddleware = require('./backend/middleware/authMiddleware');
 const userActivityRoutes = require('./backend/routes/userActivityRoutes');
+const testResultRoutes = require('./backend/routes/testResultRoutes');
+
 
 const cors = require('cors');
 const app = express();
@@ -22,6 +24,7 @@ app.use(cors({
 app.use('/api/auth', authRoutes); 
 app.use('/api/auth', userRoutes);
 app.use('/api/user-activity', userActivityRoutes);
+app.use('/api/test-results', testResultRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
